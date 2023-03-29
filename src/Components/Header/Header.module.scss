@@ -1,0 +1,27 @@
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+
+    .headerRightContainer {
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+.headerMenuLinksContainer {
+    display: flex;
+    align-items: center;
+
+    ul {
+        display: flex;
+        gap: 1rem;
+
+        li {
+            list-style: none;
+
+            a {
+                padding: 0.5rem 2rem;
+            }
+        }
+    }
+}
