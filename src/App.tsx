@@ -6,24 +6,7 @@ import Home from './Pages/Home/Index';
 import AboutPage from './Pages/About/Index';
 import { Route, Router, Routes } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-
-interface IHeaderContext {
-  leftContent: React.ReactNode;
-  menuLinks: React.ReactNode;
-  rightActions: React.ReactNode;
-  setLeftContent: (logo: React.ReactNode) => void;
-  setMenuLinks: (menuLinks: React.ReactNode) => void;
-  setRightActions: (rightActions: React.ReactNode) => void;
-}
-
-const HeaderContext = React.createContext<IHeaderContext>({
-  leftContent: null,
-  menuLinks: null,
-  rightActions: null,
-  setLeftContent: (logo: React.ReactNode) => {},
-  setMenuLinks: (menuLinks: React.ReactNode) => {},
-  setRightActions: (rightActions: React.ReactNode) => {},
-});
+import HeaderContext from './Contexts/HeaderContext';
 
 // export const HeaderConsumer = HeaderContext.Consumer;
 export const useHeaderContext = () => React.useContext(HeaderContext);
@@ -44,7 +27,8 @@ export const useHeaderContext = () => React.useContext(HeaderContext);
 
 function App() {
   const [leftContent, setLeftContentData] = useState<React.ReactNode>(
-    <img src={reactLogo} alt='React Logo' />,
+    // <img src={reactLogo} alt='React Logo' />,
+    <div>logo</div>,
   );
   const [menuLinks, setMenuLinksData] = useState<React.ReactNode>(
     <div>Menu Links</div>,
@@ -62,7 +46,7 @@ function App() {
           leftContent,
           menuLinks,
           rightActions,
-          setLeftContent: (content: React.ReactNode) => {
+          setLeftContent: (content: React.ReactNode) => { //Question: why is this
             setLeftContentData(content);
           },
           setMenuLinks: (menuLinks: React.ReactNode) => {
@@ -76,7 +60,7 @@ function App() {
         <Header />
         <Routes>
           <Route path='/about' element={<AboutPage />} />
-          <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
         </Routes>
       </HeaderProvider>
     </div>
@@ -87,44 +71,44 @@ export default App;
 
 // consume the content HeaderConsumer
 
-const Header = () => {
-  return (
-    <HeaderConsumer>
-      {({}) => {
-        return <div>Header</div>;
-      }}
-    </HeaderConsumer>
-  );
-};
+// const Header = () => {
+//   return (
+//     <HeaderConsumer>
+//       {({}) => {
+//         return <div>Header</div>;
+//       }}
+//     </HeaderConsumer>
+//   );
+// };
 
-interface Props {
-  children: () => React.ReactNode;
-}
+// interface Props {
+//   children: () => React.ReactNode;
+// }
 
-const Parent: React.FC<Props> = (props) => {
-  const { children } = props;
-  const [state, setState] = useState({});
+// const Parent: React.FC<Props> = (props) => {
+//   const { children } = props;
+//   const [state, setState] = useState({});
 
-  return <div>{children(state)}</div>;
-};
+//   return <div>{children(state)}</div>;
+// };
 
-const Child: React.FC<any> = (props) => {
-  const { state } = props;
+// const Child: React.FC<any> = (props) => {
+//   const { state } = props;
 
-  return (
-    <div>
-      <div>{state}</div>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <div>{state}</div>
+//     </div>
+//   );
+// };
 
-const App = () => {
-  useEffect(() => {}, []);
-  return (
-    <Parent>
-      {function (state) {
-        return <Child state={state} />;
-      }}
-    </Parent>
-  );
-};
+// const App = () => {
+//   useEffect(() => {}, []);
+//   return (
+//     <Parent>
+//       {function (state) {
+//         return <Child state={state} />;
+//       }}
+//     </Parent>
+//   );
+// };

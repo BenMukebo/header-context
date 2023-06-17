@@ -8,8 +8,12 @@ const AboutPage: React.FC = () => {
 
   const links = [
     {
-      name: 'Home',
+      name: 'Accueil',
       url: '/',
+    },
+    {
+      name: 'Home',
+      url: '/home',
     },
     {
       name: 'Movies',
@@ -27,8 +31,17 @@ const AboutPage: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>About Page</h1>
+    <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '10rem',
+      padding: '10rem',
+    }}
+    >
+      <h1> About</h1>
+      <h2>About Page Description</h2>
+     
       <NavLink to='/'>Go to the Home</NavLink>
     </div>
   );

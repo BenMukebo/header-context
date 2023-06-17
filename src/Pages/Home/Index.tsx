@@ -9,8 +9,12 @@ const Home = () => {
 
   const links = [
     {
-      name: 'Home',
+      name: 'Accueil',
       url: '/',
+    },
+    {
+      name: 'Home',
+      url: '/home',
     },
     {
       name: 'About',
@@ -18,6 +22,10 @@ const Home = () => {
     },
     {
       name: 'Contact',
+      url: '/contact',
+    },
+    {
+      name: 'candidate',
       url: '/contact',
     },
   ];
@@ -33,15 +41,13 @@ const Home = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10rem',
+        padding: '10rem',
       }}
     >
-      Home
-      <button
-        type='button'
-        onClick={() => {
-          navigate('/about');
-        }}
-      >
+      <h1> Home</h1>
+      <h2>Home Page Description</h2>
+     
+      <button type='button' onClick={() => {   navigate('/about'); }}>
         Go to about
       </button>
     </div>
