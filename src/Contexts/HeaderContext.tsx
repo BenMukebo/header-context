@@ -17,16 +17,19 @@ export const HeaderContext = React.createContext<IHeaderContextProps | undefined
 
 export const useHeaderContext = () => {
   const context = React.useContext(HeaderContext);
-  // if (context === undefined) { // 1
-  //   throw new Error('useHeaderContext must be used within a HeaderContextProvider');
-  // }
-  return context || {
-    leftContent: <div>logo</div>,
-    menuLinks: null,
-    rightActions: null, // 2
-  };
+  if (context === undefined) { // 1
+    throw new Error('useHeaderContext must be used within a HeaderContextProvider');
+  }
+  return context;
 }
 
+// return context || {
+//   leftContent: <div>logo</div>,
+//   menuLinks: null,
+//   rightActions: null, // 2
+// };
+
+// Note: this prevention only work when trying to use the context values aeg: from the header { leftContent, menuLinks, rightActions } but  not when tryimg to set
 interface Props {
   children: React.ReactNode;
 }
