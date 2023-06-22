@@ -29,6 +29,7 @@ export const useHeaderContext = () => {
 
 interface Props {
   children: React.ReactNode | ((props: IHeaderContextProps) => React.ReactNode);
+  // The props children can also be a function
 }
 
 const HeaderContextProvider = (props: Props) => {
@@ -46,11 +47,10 @@ const HeaderContextProvider = (props: Props) => {
   
 
   const value = {
-
     leftContent,
     menuLinks,
     rightActions,
-    setLeftContent: (content: React.ReactNode) => { //Question: why is this
+    setLeftContent: (content: React.ReactNode) => {
       setLeftContentData(content);props.children
     },
     setMenuLinks: (menuLinks: React.ReactNode) => {
@@ -65,6 +65,7 @@ const HeaderContextProvider = (props: Props) => {
     <HeaderContext.Provider  value={value}>
       {
         typeof props.children === 'function' ? props.children(value) : props.children 
+        {/* If a function, return the function with the value as a parameter, else return the props children*/ }
       }
     </HeaderContext.Provider>
   )

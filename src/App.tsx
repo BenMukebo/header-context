@@ -28,10 +28,14 @@ function App() {
   return (
     <div className='App'>
       <HeaderContextProvider>
+        {/* The kid is no longer a react node but a function that return an react node*/}
+      {/* {(props) => ( */}
        {({menuLinks}) => (
         <>
-        {menuLinks?.toLocaleString}
-         <Header />
+        {menuLinks?.toString === "abc" && <span>here we go</span>}
+        {/* Use when you wanna do something with the context element because we can access the HeaderContextProvider to the root app component because it wrap the children of the app and not the app itself */}
+
+        <Header />
         <Routes>
           <Route path='/about' element={<AboutPage />} />
           <Route path='/home' element={<Home />} />
