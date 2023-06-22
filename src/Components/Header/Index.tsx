@@ -4,6 +4,8 @@ import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
   const { leftContent, menuLinks, rightActions } = useHeaderContext();
+  // const { leftContent, menuLinks, rightActions } = useHeaderContext() || {}; // 3
+  // use this third one if you don't wanna return an error if the context is undefined
 
   return (
     <div className={styles.headerContainer}>

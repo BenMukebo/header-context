@@ -17,19 +17,18 @@ export const HeaderContext = React.createContext<IHeaderContextProps | undefined
 
 export const useHeaderContext = () => {
   const context = React.useContext(HeaderContext);
-  // if (context === undefined) {
+  // if (context === undefined) { // 1
   //   throw new Error('useHeaderContext must be used within a HeaderContextProvider');
   // }
   return context || {
     leftContent: <div>logo</div>,
-    menuLinks: <div>Menu Links</div>,
-    rightActions: <div>Right Actions</div>,
+    menuLinks: null,
+    rightActions: null, // 2
   };
 }
 
 interface Props {
-  children: React.ReactNode | ((props: IHeaderContextProps) => React.ReactNode);
-  // The props children can also be a function
+  children: React.ReactNode;
 }
 
 const HeaderContextProvider = (props: Props) => {
@@ -45,7 +44,6 @@ const HeaderContextProvider = (props: Props) => {
     <div>Right Actions</div>,
   );
   
-
   const value = {
     leftContent,
     menuLinks,
@@ -60,13 +58,10 @@ const HeaderContextProvider = (props: Props) => {
       setRightActionsData(rightActions);
     },
   }
-  
+
   return (
     <HeaderContext.Provider  value={value}>
-      {
-        typeof props.children === 'function' ? props.children(value) : props.children 
-        {/* If a function, return the function with the value as a parameter, else return the props children*/ }
-      }
+      {props.children}
     </HeaderContext.Provider>
   )
 }
