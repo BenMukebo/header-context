@@ -6,10 +6,7 @@ import Home from './Pages/Home/Index';
 import AboutPage from './Pages/About/Index';
 import { Route, Router, Routes } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-import HeaderContext from './Contexts/HeaderContext';
-
-// export const HeaderConsumer = HeaderContext.Consumer;
-export const useHeaderContext = () => React.useContext(HeaderContext);
+import HeaderContextProvider from './Contexts/HeaderContext';
 
 // const useHeaderContext = (props) => {
 
@@ -26,43 +23,22 @@ export const useHeaderContext = () => React.useContext(HeaderContext);
 // const {} = useHeaderContext();
 
 function App() {
-  const [leftContent, setLeftContentData] = useState<React.ReactNode>(
-    // <img src={reactLogo} alt='React Logo' />,
-    <div>logo</div>,
-  );
-  const [menuLinks, setMenuLinksData] = useState<React.ReactNode>(
-    <div>Menu Links</div>,
-  );
-  const [rightActions, setRightActionsData] = useState<React.ReactNode>(
-    <div>Right Actions</div>,
-  );
-
-  const HeaderProvider = HeaderContext.Provider;
+ 
 
   return (
     <div className='App'>
-      <HeaderProvider
-        value={{
-          leftContent,
-          menuLinks,
-          rightActions,
-          setLeftContent: (content: React.ReactNode) => { //Question: why is this
-            setLeftContentData(content);
-          },
-          setMenuLinks: (menuLinks: React.ReactNode) => {
-            setMenuLinksData(menuLinks);
-          },
-          setRightActions: (rightActions: React.ReactNode) => {
-            setRightActionsData(rightActions);
-          },
-        }}
-      >
-        <Header />
+      <HeaderContextProvider>
+       {({menuLinks}) => (
+        <>
+        {menuLinks?.toLocaleString}
+         <Header />
         <Routes>
           <Route path='/about' element={<AboutPage />} />
           <Route path='/home' element={<Home />} />
         </Routes>
-      </HeaderProvider>
+        </>
+       )}
+      </HeaderContextProvider>
     </div>
   );
 }

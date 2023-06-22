@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useHeaderContext } from '../../App';
+import { useHeaderContext } from '../../Contexts/HeaderContext';
 import reactLogo from '../../assets/react.svg';
 import HeaderMenuLinks from '../../Components/Header/HeaderMenuLinks';
 

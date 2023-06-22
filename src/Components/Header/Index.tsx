@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHeaderContext } from '../../App';
+import { useHeaderContext } from '../../Contexts/HeaderContext';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {

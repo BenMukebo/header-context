@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useHeaderContext } from '../../App';
+import { useHeaderContext } from '../../Contexts/HeaderContext';
 import HeaderMenuLinks from '../../Components/Header/HeaderMenuLinks';
 
 const AboutPage: React.FC = () => {
